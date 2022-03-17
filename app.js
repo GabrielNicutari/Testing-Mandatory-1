@@ -2,7 +2,7 @@
 const express = require('express');
 
 const app = express();
-console.log('hi');
+
 // setup static dir
 app.use(express.static(`${__dirname}`));
 
