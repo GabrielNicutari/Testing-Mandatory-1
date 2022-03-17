@@ -12,6 +12,12 @@ function generateStreetNumber() {
     return streetNumber;
 }
 
+function generateFloor() {
+    let floor = getRandomNumber(0, 99);
+    if (floor === 0) floor = 'st';
+    return floor;
+}
+
 function getRandomCharacter() {
     const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     return possible.charAt(Math.floor(Math.random() * possible.length));
