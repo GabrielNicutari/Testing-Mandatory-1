@@ -19,7 +19,7 @@ function generateFloor() {
 }
 
 function getRandomCharacter() {
-    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅØÆabcdefghijklmnopqrstuvwxyzåøæ";
     return possible.charAt(Math.floor(Math.random() * possible.length));
 }
 
@@ -27,3 +27,5 @@ function getRandomCharacter() {
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+module.exports = {generateFloor, generateStreetNumber, generateStreet}
