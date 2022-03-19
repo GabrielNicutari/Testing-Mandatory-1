@@ -48,8 +48,8 @@ function generateFloor() {
 }
 
 function getRandomCharacter() {
-const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-return possible.charAt(Math.floor(Math.random() * possible.length));
+    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅØÆabcdefghijklmnopqrstuvwxyzåøæ";
+    return possible.charAt(Math.floor(Math.random() * possible.length));
 }
 
 //both values included
