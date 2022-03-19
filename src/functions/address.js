@@ -10,7 +10,7 @@ async function getRandomPostalCodeAndTown() {
 
 //Returns a random integer from 'start' to array.length - 1 + start
 function getRandomNumber(maxLength, start = 0) {
-  return Math.floor(Math.random() * (maxLength - start + 1)) + start;
+  return Math.floor(Math.random() * (maxLength - start)) + start;
 }
 
 function getRandomDoor() {
