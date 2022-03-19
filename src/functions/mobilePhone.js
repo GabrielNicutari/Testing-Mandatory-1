@@ -22,7 +22,7 @@ function digitsToArray() {
 
 function getRandomPhoneNumber() {
     const digitsArray = digitsToArray();
-    let phoneNumber = String(digitsArray[getRandomNumber(digitsArray.length)]);
+    let phoneNumber = String(digitsArray[getRandomNumber(digitsToArray().length)]);
     while (phoneNumber.length < 8) {
         phoneNumber = phoneNumber.concat(String(getRandomNumber(10)));
     }

@@ -7,9 +7,9 @@ describe('mobile phone', function(){
     }); 
     
     it('check if number starts from digit from list of possible digits for the danish number', () => {
-        const phoneNumber = getRandomPhoneNumber();
+        let phoneNumber = getRandomPhoneNumber();
         const digitsArray = digitsToArray();
-        expect(phoneNumber.slice(0,3)).toMatch(new RegExp(digitsArray.join("|"), 'gi'));
+        expect(phoneNumber).toMatch(new RegExp(`^(${digitsArray.join("|")})`));
     }); 
 
     it('number is length of 8', () => {
