@@ -1,23 +1,18 @@
 const router = require("express").Router();
-const dbPool = require('../database/connection').pool;
+const promisePool = require('../database/connection').pool.promise();
 
 
-router.get('/address', (req, res) => {
+async function getRandomPostalCodeAndTown() {
+  const mysqlQuery = "SELECT * FROM postal_code ORDER BY RAND() LIMIT 1";
+  const [rows, fields] = await promisePool.query(mysqlQuery);
+  return rows;
+  // https://stackoverflow.com/questions/57121227/why-do-we-need-to-release-connection-when-using-connection-pool-in-mysql
+}
 
-  dbPool.getConnection(function(err, conn) {
-    if (err) console.log(err);
-    
-    // Do something with the connection
-    conn.query("SELECT * FROM postal_code LIMIT 5", (err, rows, fields) => {
-      if (err) console.log(err);
-      console.log(rows);
-    });
+router.get('/address', async (req, res) => {
+  const postalCodeAndTown = await getRandomPostalCodeAndTown();
   
-    // Don't forget to release the connection when finished!
-    dbPool.releaseConnection(conn);
-  });
-  res.send("Hello world!");
-
+  res.send(postalCodeAndTown);
 });
 
 module.exports = {router};
