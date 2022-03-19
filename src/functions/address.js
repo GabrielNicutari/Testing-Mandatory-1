@@ -47,20 +47,6 @@ function getRandomDoor() {
   }
 }
 
-router.get('/address', async (req, res) => {
-  const postalCodeAndTown = await getRandomPostalCodeAndTown();
-
-  const door = getRandomDoor();
-  
-  const response = `
-    Postal Code: ${postalCodeAndTown[0].cPostalCode}, 
-    Town: ${postalCodeAndTown[0].cTownName},
-    Door: ${door}`;
-
-  res.send(response);
-});
-module.exports = {router};
-
 function generateStreet() {
     let street = '';
     do {
@@ -70,13 +56,13 @@ function generateStreet() {
 }
 
 function generateStreetNumber() {
-    let streetNumber = getRandomNumber(1, 1000);
+    let streetNumber = getRandomNumber(1000, 1);
     if (Math.random() < 0.5) streetNumber += getRandomCharacter().toUpperCase();
     return streetNumber;
 }
 
 function generateFloor() {
-    let floor = getRandomNumber(0, 100);
+    let floor = getRandomNumber(100);
     if (floor === 0) floor = 'st';
     return floor;
 }
@@ -86,6 +72,27 @@ function getRandomCharacter() {
     return possible.charAt(Math.floor(Math.random() * possible.length));
 }
 
-function getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
-}
+router.get('/address', async (req, res) => {
+  const postalCodeAndTown = await getRandomPostalCodeAndTown();
+  
+
+  const resp = {
+    street: generateStreet(),
+    streetFloor: generateStreetNumber(),
+    floor: generateFloor(),
+    door: getRandomDoor(),
+    postalCode: postalCodeAndTown[0].cPostalCode,
+    town: postalCodeAndTown[0].cTownName
+  }
+  const response = `
+    Street: ${generateStreet()},\n
+    Street Number: ${generateStreetNumber()},\n
+    Floor: ${generateFloor()},\n
+    Door: ${getRandomDoor()},\n
+    Postal Code: ${postalCodeAndTown[0].cPostalCode},\n
+    Town: ${postalCodeAndTown[0].cTownName}`;
+
+  res.send(resp);
+});
+
+module.exports = {router};
