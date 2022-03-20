@@ -13,8 +13,8 @@ app.use(addressRouter.router);
 const PORT = process.env.PORT || 8080;
 /* eslint-disable no-debugger, no-console */
 app.listen(PORT, (error) => {
-    if (error) {
-      console.log(error);
-    }
-    console.log('Server is running on port', Number(PORT));
+  if (error) {
+    console.log(error);
+  }
+  console.log('Server is running on port', Number(PORT));
 });

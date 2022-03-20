@@ -4,9 +4,10 @@
   "description": "Mandatory 1 project for testing class",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "lint": "eslint ./src --fix",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,9 @@
     "mysql2": "^2.3.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "eslint": "^8.11.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4"
   }
 }
