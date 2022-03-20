@@ -47,7 +47,7 @@ function getRandomDoor() {
   }
 }
 
-function generateStreet() {
+function getStreet() {
     let street = '';
     const length = getRandomNumber(51, 10);
     while (street.length < length) {
@@ -56,13 +56,13 @@ function generateStreet() {
     return street;
 }
 
-function generateStreetNumber() {
+function getStreetNumber() {
     let streetNumber = getRandomNumber(1000, 1);
     if (Math.random() < 0.5) streetNumber += getRandomCharacter().toUpperCase();
     return streetNumber;
 }
 
-function generateFloor() {
+function getFloor() {
     let floor = getRandomNumber(100);
     if (floor === 0) floor = 'st';
     return floor;
@@ -76,9 +76,9 @@ function getRandomCharacter() {
 router.get('/address', async (req, res) => {
   const postalCodeAndTown = await getRandomPostalCodeAndTown();
   res.send({
-    street: generateStreet(),
-    streetFloor: generateStreetNumber(),
-    floor: generateFloor(),
+    street: getStreet(),
+    streetFloor: getStreetNumber(),
+    floor: getFloor(),
     door: getRandomDoor(),
     postalCode: postalCodeAndTown[0].cPostalCode,
     town: postalCodeAndTown[0].cTownName
