@@ -8,9 +8,11 @@ async function getRandomPostalCodeAndTown() {
   // https://stackoverflow.com/questions/57121227/why-do-we-need-to-release-connection-when-using-connection-pool-in-mysql
 }
 
-//Returns a random integer from 'start' to array.length - 1 + start
-function getRandomNumber(maxLength, start = 0) {
-  return Math.floor(Math.random() * (maxLength - start)) + start;
+//Returns a random integer from min to max excluding max
+function getRandomNumber(max = 1, min = 0) {
+  //make sure passed parameters are numbers
+  if (typeof(min) !== 'number' || typeof(max) !== 'number') throw 'Passed parameter is not a number.';
+  return Math.floor(Math.random() * (max - min)) + min;
 }
 
 function getRandomDoor() {
@@ -85,4 +87,4 @@ router.get('/address', async (req, res) => {
   });
 });
 
-module.exports = {router};
+module.exports = {router, getRandomNumber};
