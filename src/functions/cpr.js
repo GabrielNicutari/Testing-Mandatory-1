@@ -2,12 +2,16 @@
 
 module.exports.generateCPR = (gender) => {
     const date = this.generateRandomDate();
-    const dob = this.getDateOfBirth(date);
+    const dob = generatetDateOfBirth(date);
     const lastFour = generateLastFour(gender);
     return String(dob + lastFour);
 };
 
-module.exports.getDateOfBirth = (date) => {
+module.exports.getDateOfBirth = (cpr) => {
+    return cpr.substring(0, 7);
+};
+
+const generatetDateOfBirth = (date) => {
     const _date = ('0' + date.getDate()).slice(-2);
     const month = ('0' + (date.getMonth() + 1)).slice(-2);
     const year = String(date.getFullYear()).slice(-2);

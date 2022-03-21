@@ -18,11 +18,10 @@ describe('cpr and dob test suite', () => {
         expect(isLastDigitEven).toBe(true);
     });
 
-    it.skip('Date of birth should match the cpr date', () => {
-        const date = maleCpr.substring(0, 2);
-        const month = maleCpr.substring(2, 4);
-        const year = maleCpr.substring(4, 6);
-        
+    it('Date of birth should match the cpr date', () => {
+        const cpr_dob = maleCpr.substring(0, 7);
+        const dob = getDateOfBirth(maleCpr);
+        expect(cpr_dob).toEqual(dob);
     });
 
 });
