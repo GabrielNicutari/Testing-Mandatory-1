@@ -1,4 +1,4 @@
-const { digitsToArray, getRandomPhoneNumber, getRandomNumber } = require('../functions/mobilePhone.js');
+const { digitsToArray, getRandomPhoneNumber, getRandomNumber } = require('../functions/mobilePhone');
 
 describe('mobile phone', () => {
   it('get random number up to maximum value', () => {
