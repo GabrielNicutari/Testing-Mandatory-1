@@ -4,6 +4,8 @@
   "description": "Mandatory 1 project for testing class",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "lint": "eslint ./src --fix",
     "test": "jest"
   },
@@ -19,6 +21,7 @@
   "homepage": "https://github.com/dprzygocka/Testing-Mandatory-1#readme",
   "dependencies": {
     "dotenv": "^16.0.0",
+    "eslint-plugin-jest": "^26.1.2",
     "express": "^4.17.3",
     "jest": "^27.5.1",
     "mysql2": "^2.3.3"
@@ -26,6 +29,7 @@
   "devDependencies": {
     "eslint": "^8.11.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4"
+    "eslint-plugin-import": "^2.25.4",
+    "nodemon": "^2.0.15"
   }
 }
