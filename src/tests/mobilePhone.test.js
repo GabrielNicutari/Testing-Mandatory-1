@@ -10,7 +10,6 @@ describe('mobile phone', function(){
     it('check getRandomPhoneNumber() if number starts from digit from list of possible digits for the danish number', () => {
         let phoneNumber = getRandomPhoneNumber();
         const digitsArray = digitsToArray();
-        expect(String.isString(phoneNumber)).toBe(true);
         expect(phoneNumber).toMatch(new RegExp(`^(${digitsArray.join("|")})`));
     }); 
 
