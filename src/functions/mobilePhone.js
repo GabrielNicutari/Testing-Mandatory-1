@@ -6,18 +6,22 @@ const digitCombination = ['2', '30', '31', '40', '41', '42', '50', '51', '52', '
 
 function digitsToArray() {
   return digitCombination.map((digit) => {
-    if (new RegExp('^[0-9]{3}-[0-9]{3}$').test(digit)) {
+    if ((/^[0-9]{3}-[0-9]{3}$/).test(digit)) {
       let rangeFrom = digit.split('-')[0];
       const rangeTo = digit.split('-')[1];
       const digitArray = [];
       while (rangeFrom <= rangeTo) {
-        digitArray.push(rangeFrom);
+        digitArray.push(String(rangeFrom));
         ++rangeFrom;
       }
       return digitArray;
     }
     return digit;
   }).flat();
+}
+
+function getRandomNumber(max) {
+  return Math.floor(Math.random() * max);
 }
 
 function getRandomPhoneNumber() {
@@ -28,11 +32,6 @@ function getRandomPhoneNumber() {
   }
   return phoneNumber;
 }
-
-function getRandomNumber(max) {
-  return Math.floor(Math.random() * max);
-}
-
 module.exports = {
   digitsToArray, getRandomPhoneNumber, getRandomNumber,
 };

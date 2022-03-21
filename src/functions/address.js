@@ -3,6 +3,7 @@ const promisePool = require('../database/connection').pool.promise();
 
 async function getRandomPostalCodeAndTown() {
   const mysqlQuery = 'SELECT * FROM postal_code ORDER BY RAND() LIMIT 1';
+  // eslint-disable-next-line
   const [rows, fields] = await promisePool.query(mysqlQuery);
   return rows;
   // https://stackoverflow.com/questions/57121227/why-do-we-need-to-release-connection-when-using-connection-pool-in-mysql
@@ -11,8 +12,13 @@ async function getRandomPostalCodeAndTown() {
 // Returns a random integer from min to max excluding max
 function getRandomNumber(max = 1, min = 0) {
   // make sure passed parameters are numbers
-  if (typeof (min) !== 'number' || typeof (max) !== 'number') throw 'Passed parameter is not a number.';
+  if (typeof (min) !== 'number' || typeof (max) !== 'number') throw new Error('Passed parameter is not a number.');
   return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function getRandomCharacter() {
+  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZÅØÆabcdefghijklmnopqrstuvwxyzåøæ';
+  return possible.charAt(Math.floor(Math.random() * possible.length));
 }
 
 function getRandomDoor() {
@@ -27,8 +33,8 @@ function getRandomDoor() {
   switch (doorOptions[randOptionIndex]) {
     case options.SIDE:
       const sideOptions = ['th', 'mf', 'tv'];
-      const randOptionIndex = getRandomNumber(sideOptions.length);
-      return sideOptions[randOptionIndex];
+      const randOptionIndex2 = getRandomNumber(sideOptions.length);
+      return sideOptions[randOptionIndex2];
 
     case options.NUMBER:
       return getRandomNumber(50, 1);
@@ -45,7 +51,7 @@ function getRandomDoor() {
       return result; // eg: c-1, f23, z-999
 
     default:
-      'Internal Error';
+      return 'Internal Error';
   }
 }
 
@@ -68,11 +74,6 @@ function getFloor() {
   let floor = getRandomNumber(100);
   if (floor === 0) floor = 'st';
   return floor;
-}
-
-function getRandomCharacter() {
-  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZÅØÆabcdefghijklmnopqrstuvwxyzåøæ';
-  return possible.charAt(Math.floor(Math.random() * possible.length));
 }
 
 router.get('/address', async (req, res) => {
