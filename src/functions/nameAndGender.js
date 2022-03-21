@@ -1,7 +1,7 @@
-const data = require("../database/person-names.json");
+const data = require('../database/person-names.json');
 
 function generateNamesAndGender() {
-  const persons = data.persons;
+  const { persons } = data;
 
   const randomElement = persons[Math.floor(Math.random() * persons.length)];
 
