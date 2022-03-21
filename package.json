@@ -7,7 +7,8 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "lint": "eslint ./src --fix",
-    "test": "jest"
+    "test": "jest --coverage",
+    "sonar": "npx sonar-scanner"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,19 @@
     "eslint": "^8.11.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
+    "jest-sonar-reporter": "^2.0.0",
     "nodemon": "^2.0.15"
+  },
+  "jest": {
+    "testEnvironment":  "node",
+    "coveragePathIgnorePatterns": [
+        "/node_modules/"
+    ],
+    "testResultsProcessor":  "jest-sonar-reporter"
+  },
+  "jestSonar": {
+      "reportPath":  "coverage",
+      "reportFile":  "test-reporter.xml",
+      "indent":  4
   }
 }
