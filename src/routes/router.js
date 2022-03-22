@@ -87,11 +87,12 @@ router.get('/all', async (req, res, next) => {
 });
 
 /**
- * @route /all/:amount
+ * @route /all/bulk
+ * @queryParam amount (optional) - defaults to 2
  * Return fake person information in bulk (all information for 2 to 100 persons)
  */
-router.get('/all/:amount', async (req, res, next) => {
-	const amount = Number(req.params.amount) || 2;
+router.get('/all/bulk', async (req, res, next) => {
+	const amount = Number(req.query.amount) || 2;
 	let list = new Array(amount).fill(null);
 	const bulkData = await Promise.all(list.map(async () => {
 		const { name, surname, gender } = generateNamesAndGender();
@@ -101,7 +102,6 @@ router.get('/all/:amount', async (req, res, next) => {
 		const address = await getRandomAddress();
 		return { name, surname, gender, cpr, dob, phoneNumber, address };
 	}));
-	console.log(bulkData)
 	res.send({ length: bulkData.length, result: bulkData });
 });
 
