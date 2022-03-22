@@ -58,7 +58,7 @@ router.get('/name-gender-dob', (req, res, next) => {
  * @route /address
  * Return a fake address
  */
- router.get('/address', async (req, res) => {
+router.get('/address', async (req, res) => {
 	const address = await getRandomAddress();
 	res.send(address);
 });
@@ -80,16 +80,29 @@ router.get('/mobile', (req, res, next) => {
 router.get('/all', async (req, res, next) => {
 	const { name, surname, gender } = generateNamesAndGender();
 	const { cpr } = generateCPR(gender);
-	const dob = getDateOfBirth(cpr);
+	const { dob } = getDateOfBirth(cpr);
+	const { phoneNumber } = getRandomPhoneNumber();
 	const address = await getRandomAddress();
+	res.send({ cpr, name, surname, gender, dob, address, phoneNumber });
 });
 
 /**
  * @route /all/:amount
  * Return fake person information in bulk (all information for 2 to 100 persons)
  */
-router.get('/all/:amount', (req, res, next) => {
-	
+router.get('/all/:amount', async (req, res, next) => {
+	const amount = Number(req.params.amount) || 2;
+	let list = new Array(amount).fill(null);
+	const bulkData = await Promise.all(list.map(async () => {
+		const { name, surname, gender } = generateNamesAndGender();
+		const { cpr } = generateCPR(gender);
+		const { dob } = getDateOfBirth(cpr);
+		const { phoneNumber } = getRandomPhoneNumber();
+		const address = await getRandomAddress();
+		return { name, surname, gender, cpr, dob, phoneNumber, address };
+	}));
+	console.log(bulkData)
+	res.send({ length: bulkData.length, result: bulkData });
 });
 
 module.exports = router;
