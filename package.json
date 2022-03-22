@@ -25,7 +25,8 @@
     "eslint-plugin-jest": "^26.1.2",
     "express": "^4.17.3",
     "jest": "^27.5.1",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "supertest": "^6.2.2"
   },
   "devDependencies": {
     "eslint": "^8.11.0",
