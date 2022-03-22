@@ -11,11 +11,11 @@ describe('mobile phone', () => {
   it('check getRandomPhoneNumber() if number starts from digit from list of possible digits for the danish number', () => {
     const phoneNumber = getRandomPhoneNumber();
     const digitsArray = digitsToArray();
-    expect(phoneNumber).toMatch(new RegExp(`^(${digitsArray.join('|')})`));
+    expect(phoneNumber.phoneNumber).toMatch(new RegExp(`^(${digitsArray.join('|')})`));
   });
 
   it('number is length of 8', () => {
     const phoneNumber = getRandomPhoneNumber();
-    expect(phoneNumber.length).toBe(8);
+    expect(phoneNumber.phoneNumber.length).toBe(8);
   });
 });
