@@ -1,4 +1,3 @@
-const router = require('express').Router();
 const promisePool = require('../database/connection').pool.promise();
 
 async function getRandomPostalCodeAndTown() {
@@ -76,16 +75,4 @@ function getFloor() {
   return floor;
 }
 
-router.get('/address', async (req, res) => {
-  const postalCodeAndTown = await getRandomPostalCodeAndTown();
-  res.send({
-    street: getStreet(),
-    streetFloor: getStreetNumber(),
-    floor: getFloor(),
-    door: getRandomDoor(),
-    postalCode: postalCodeAndTown[0].cPostalCode,
-    town: postalCodeAndTown[0].cTownName,
-  });
-});
-
-module.exports = { router, getRandomNumber };
+module.exports = { getRandomNumber };

@@ -14,8 +14,8 @@
     },
     "rules": {
         "max-len": ["error", { "code": 160 }],
-        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
         "no-plusplus": "off",
-        "no-case-declarations": "off"
+        "no-case-declarations": "off",
+        "linebreak-style": "off",
     }
 }

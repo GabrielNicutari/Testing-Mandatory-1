@@ -6,10 +6,8 @@ const app = express();
 // setup static dir
 app.use(express.static(`${__dirname}`));
 
-// setup address router/s
-const addressRouter = require('./src/functions/address');
-
-app.use(addressRouter.router);
+// setup global routing
+app.use('/api', require('./src/routes/router.js'));
 
 const PORT = process.env.PORT || 8080;
 /* eslint-disable no-debugger, no-console */
