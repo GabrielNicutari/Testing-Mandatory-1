@@ -8,4 +8,6 @@ function generateNamesAndGender() {
   return randomElement;
 }
 
-module.exports = generateNamesAndGender;
+module.exports = {
+  generateNamesAndGender
+};

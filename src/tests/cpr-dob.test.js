@@ -21,8 +21,12 @@ describe('cpr and dob test suite', () => {
 
   it('Date of birth should match the cpr date', () => {
     // eslint-disable-next-line
-    const cpr_dob = maleCpr.substring(0, 7);
+    const cpr_dob = maleCpr.substring(0, 6);
     const { dob } = getDateOfBirth(maleCpr);
+
+    expect(cpr_dob).toHaveLength(6);
+    expect(dob).toHaveLength(6);
+
     expect(cpr_dob).toEqual(dob);
   });
 });

@@ -1,4 +1,4 @@
-const generateNamesAndGender = require('../functions/nameAndGender');
+const { generateNamesAndGender } = require('../functions/nameAndGender');
 const data = require('../database/person-names.json');
 
 describe('Extract random person from json file', () => {
