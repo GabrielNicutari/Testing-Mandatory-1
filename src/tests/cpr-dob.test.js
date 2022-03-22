@@ -1,9 +1,9 @@
 // eslint-disable-next-line
-const { generateCPR, generateRandomDate, getDateOfBirth } = require('../functions/cpr');
+const { generateCPR, getDateOfBirth } = require('../functions/cpr');
 
 describe('cpr and dob test suite', () => {
-  const maleCpr = generateCPR('male');
-  const femaleCpr = generateCPR('female');
+  const { cpr: maleCpr } = generateCPR('male');
+  const { cpr: femaleCpr  } = generateCPR('female');
 
   it('should generate a valid male cpr', () => {
     expect(maleCpr).toHaveLength(10);
@@ -22,7 +22,7 @@ describe('cpr and dob test suite', () => {
   it('Date of birth should match the cpr date', () => {
     // eslint-disable-next-line
     const cpr_dob = maleCpr.substring(0, 7);
-    const dob = getDateOfBirth(maleCpr);
+    const { dob } = getDateOfBirth(maleCpr);
     expect(cpr_dob).toEqual(dob);
   });
 });

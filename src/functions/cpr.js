@@ -21,7 +21,7 @@ const randomEvenIntFromInterval = (min, max) => {
   return min + 2 * randomIntFromInterval(0, (max - min) / 2);
 };
 
-module.exports.generateRandomDate = () => {
+const generateRandomDate = () => {
   const from = new Date(1900, 0, 0).getTime();
   const to = new Date(Date.now()).getTime();
   return new Date(from + Math.random() * (to - from));
@@ -39,10 +39,12 @@ const generateLastFour = (gender) => {
 };
 
 module.exports.generateCPR = (gender) => {
-  const date = this.generateRandomDate();
+  const date = generateRandomDate();
   const dob = generatetDateOfBirth(date);
   const lastFour = generateLastFour(gender);
-  return String(dob + lastFour);
+  return { cpr: String(dob + lastFour) };
 };
 
-module.exports.getDateOfBirth = (cpr) => cpr.substring(0, 7);
+module.exports.getDateOfBirth = (cpr) => { 
+  return { dob: cpr.substring(0, 7) } 
+};
