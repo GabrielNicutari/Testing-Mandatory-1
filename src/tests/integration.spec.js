@@ -53,4 +53,24 @@ describe("server-routes", () => {
     const {body} = await request(app).get("/api/name-gender-dob"); //use the request function that we can use the app// save the response
     expect(Object.keys(body).sort()).toEqual(['dob', 'gender', 'name', 'surname']); //test all necessary keys
   });
+
+  it("GET /api/cpr-name-gender-dob - success", async () => {
+    const {body} = await request(app).get("/api/cpr-name-gender-dob"); //use the request function that we can use the app// save the response
+    expect(Object.keys(body).sort()).toEqual(['cpr', 'dob', 'gender', 'name', 'surname']);
+  });
+
+  it("GET /api/all - success", async () => {
+    const {body} = await request(app).get("/api/all"); //use the request function that we can use the app// save the response
+    expect(Object.keys(body).sort()).toEqual(['address', 'cpr', 'dob', 'gender', 'name', 'phoneNumber', 'surname']);
+  });
+
+  it("GET /api/all/bulk - success", async () => {
+    testAmount = [-1, 1, 2, 3, 50, 99, 100, 101, 1000000, '', 'test', 5.5]; // cover edge cases and different types 
+
+    for (value in testAmount) {
+      const {body} = await request(app).get(`/api/all/bulk?amount=${value}`);
+      const condition = body.length >= 2 && body.length <= 100;
+      expect(condition).toEqual(true);  
+    }
+  });
 });
