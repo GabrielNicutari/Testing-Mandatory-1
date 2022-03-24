@@ -27,7 +27,7 @@ function getRandomNumber(max) {
 function getRandomPhoneNumber() {
   const digitsArray = digitsToArray();
   let phoneNumber = String(digitsArray[getRandomNumber(digitsToArray().length)]);
-  console.log(phoneNumber);
+  //console.log(phoneNumber);
   while (phoneNumber.length < 8) {
     phoneNumber = phoneNumber.concat(String(getRandomNumber(10)));
   }
