@@ -4,9 +4,8 @@ const request = require('supertest'); //test web apis
 const app = express(); //fake express app
 app.use('/api', require('../routes/router.js'));
 
-
-/*jest.mock("../database/person-names.json", () => {
-    "persons": [
+jest.mock("../database/person-names.json", () => ({
+    persons: [
       {
       "name": "Annemette P.",
       "surname": "Nilsson",
@@ -38,9 +37,9 @@ app.use('/api', require('../routes/router.js'));
       "gender": "male"
     }]
   
-}) //mock data
-TODO: mock the json data - cannot make it work for now
-*/
+  })
+) //mock data to avoid reading file - improve performance
+
 
 describe("server-routes", () => {
   it("GET /api/cpr-name-gender - success", async () => {
