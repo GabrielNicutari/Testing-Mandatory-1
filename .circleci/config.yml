@@ -11,11 +11,11 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Install npm dependencies
-        command: npm install --save
+          name: Install npm dependencies
+          command: npm install --save
       - run:
-        name: Run Unit Tests
-        command: npm test
+          name: Run Unit Tests
+          command: npm test
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
