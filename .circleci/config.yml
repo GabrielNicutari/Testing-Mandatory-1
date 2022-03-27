@@ -24,4 +24,6 @@ workflows:
   heroku_deploy:
     jobs:
       - run_tests
-      - heroku/deploy-via-git
+      - heroku/deploy-via-git:
+          requires:
+            - run_tests
