@@ -24,9 +24,4 @@ workflows:
   heroku_deploy:
     jobs:
       - run_tests
-      - heroku/deploy-via-git:
-          requires:
-            - run_tests
-          filters:
-            branches:
-              only: main
+      - heroku/deploy-via-git
