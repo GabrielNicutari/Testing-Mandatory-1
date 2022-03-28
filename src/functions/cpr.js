@@ -1,3 +1,5 @@
+const { getRandomNumber } = require('./utils');
+
 const generatetDateOfBirth = (date) => {
   // eslint-disable-next-line
   const _date = (`0${date.getDate()}`).slice(-2);
@@ -7,10 +9,8 @@ const generatetDateOfBirth = (date) => {
   return dob;
 };
 
-const randomIntFromInterval = () => Math.floor(Math.random() * 9);
-
 const lastCprDigit = (gender) => {
-  const last = randomIntFromInterval();
+  const last = getRandomNumber(10, 0);
 
   if (gender === 'female' && last % 2 !== 0) {
     return lastCprDigit(gender);
