@@ -64,7 +64,6 @@ describe('server-routes', () => {
   });
 
   test('GET /api/all/bulk - success', async () => {
-    jest.setTimeout(10000);
     const testAmount = [-1, 1, 2, 3, 50, 99, 100, 101, 1000000, '', 'test', 5.5]; // cover edge cases and different types
 
     await Promise.all(testAmount.map(async (value) => {
@@ -72,6 +71,6 @@ describe('server-routes', () => {
       const condition = body.length >= 2 && body.length <= 100;
       expect(condition).toEqual(true);
     }));
-  });
+  }, 30000);
   afterAll(() => { pool.end(); });
 });
