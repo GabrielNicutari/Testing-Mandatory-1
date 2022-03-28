@@ -1,4 +1,4 @@
-const { getRandomNumber } = require('../functions/address');
+const { getRandomNumber } = require('../functions/utils');
 
 // for generating random address, it doesn't make sense to test it
 // for example for street name
@@ -67,4 +67,12 @@ describe('address random number', () => {
       expect(() => { getRandomNumber(0, args); }).toThrow('Passed parameter is not a number.');
     });
   });
+
+  it('get random number up to maximum value', () => {
+    const maxNumber = 10;
+    expect(getRandomNumber(maxNumber)).not.toBeNaN();
+    expect(getRandomNumber(maxNumber)).toBeGreaterThanOrEqual(0);
+    expect(getRandomNumber(maxNumber)).toBeLessThanOrEqual(maxNumber - 1);
+  });
+
 });

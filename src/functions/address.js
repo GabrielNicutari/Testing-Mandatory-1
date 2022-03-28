@@ -1,4 +1,5 @@
 const promisePool = require('../database/connection').pool.promise();
+const {getRandomNumber} = require('./utils.js')
 
 async function getRandomPostalCodeAndTown() {
   const mysqlQuery = 'SELECT * FROM postal_code ORDER BY RAND() LIMIT 1';
@@ -6,13 +7,6 @@ async function getRandomPostalCodeAndTown() {
   const [rows, fields] = await promisePool.query(mysqlQuery);
   return rows;
   // https://stackoverflow.com/questions/57121227/why-do-we-need-to-release-connection-when-using-connection-pool-in-mysql
-}
-
-// Returns a random integer from min to max excluding max
-function getRandomNumber(max = 1, min = 0) {
-  // make sure passed parameters are numbers
-  if (typeof (min) !== 'number' || typeof (max) !== 'number') throw new Error('Passed parameter is not a number.');
-  return Math.floor(Math.random() * (max - min)) + min;
 }
 
 function getRandomCharacter() {
@@ -87,4 +81,4 @@ async function getRandomAddress() {
   };
 }
 
-module.exports = { getRandomNumber, getRandomAddress };
+module.exports = { getRandomAddress };
