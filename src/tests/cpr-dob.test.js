@@ -12,12 +12,12 @@ describe('cpr and dob test suite', () => {
     expect(isLastDigitOdd).toBe(true);
   });
 
-  it('Should generate a valid female cpr', () => {
-    expect(femaleCpr).toHaveLength(10);
-    const lastDigit = femaleCpr.charAt(femaleCpr.length - 1);
-    const isLastDigitEven = lastDigit % 2 === 0;
-    expect(isLastDigitEven).toBe(true);
-  });
+  // it('Should generate a valid female cpr', () => {
+  //   expect(femaleCpr).toHaveLength(10);
+  //   const lastDigit = femaleCpr.charAt(femaleCpr.length - 1);
+  //   const isLastDigitEven = lastDigit % 2 === 0;
+  //   expect(isLastDigitEven).toBe(true);
+  // });
 
   it('Date of birth should match the cpr date', () => {
     // eslint-disable-next-line
