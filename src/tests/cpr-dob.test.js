@@ -3,7 +3,7 @@ const { generateCPR, getDateOfBirth } = require('../functions/cpr');
 
 describe('cpr and dob test suite', () => {
   const { cpr: maleCpr } = generateCPR('male');
-  const { cpr: femaleCpr  } = generateCPR('female');
+  const { cpr: femaleCpr } = generateCPR('female');
 
   it('should generate a valid male cpr', () => {
     expect(maleCpr).toHaveLength(10);

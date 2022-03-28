@@ -9,8 +9,8 @@ const { generateNamesAndGender } = require('../functions/nameAndGender');
  * Return a fake CPR
  */
 router.get('/cpr/:gender', (req, res, next) => {
-	const cpr = generateCPR(req.params.gender);
-	res.send(cpr);
+  const cpr = generateCPR(req.params.gender);
+  res.send(cpr);
 });
 
 /**
@@ -18,9 +18,11 @@ router.get('/cpr/:gender', (req, res, next) => {
  * Return a fake CPR, full name and gender
  */
 router.get('/cpr-name-gender', (req, res, next) => {
-	const { name, surname, gender } = generateNamesAndGender();
-	const { cpr } = generateCPR(gender);
-	res.send({ cpr, name, surname, gender });
+  const { name, surname, gender } = generateNamesAndGender();
+  const { cpr } = generateCPR(gender);
+  res.send({
+    cpr, name, surname, gender,
+  });
 });
 
 /**
@@ -28,10 +30,12 @@ router.get('/cpr-name-gender', (req, res, next) => {
  * Return a fake CPR, full name, gender and date of birth
  */
 router.get('/cpr-name-gender-dob', (req, res, next) => {
-	const { name, surname, gender } = generateNamesAndGender();
-	const { cpr } = generateCPR(gender);
-	const { dob } = getDateOfBirth(cpr);
-	res.send({ cpr, name, surname, gender, dob });
+  const { name, surname, gender } = generateNamesAndGender();
+  const { cpr } = generateCPR(gender);
+  const { dob } = getDateOfBirth(cpr);
+  res.send({
+    cpr, name, surname, gender, dob,
+  });
 });
 
 /**
@@ -39,19 +43,21 @@ router.get('/cpr-name-gender-dob', (req, res, next) => {
  * Return a fake full name and gender
  */
 router.get('/name-gender', (req, res, next) => {
-	const nameAndGender = generateNamesAndGender();
-	res.send(nameAndGender);
+  const nameAndGender = generateNamesAndGender();
+  res.send(nameAndGender);
 });
 
 /**
- * @route /name-gender-dob 
+ * @route /name-gender-dob
  * Return a fake full name, gender and date of birth
  */
 router.get('/name-gender-dob', (req, res, next) => {
-	const { name, surname, gender } = generateNamesAndGender();
-	const { cpr } = generateCPR(gender);
-	const { dob } = getDateOfBirth(cpr);
-	res.send({ name, surname, gender, dob });
+  const { name, surname, gender } = generateNamesAndGender();
+  const { cpr } = generateCPR(gender);
+  const { dob } = getDateOfBirth(cpr);
+  res.send({
+    name, surname, gender, dob,
+  });
 });
 
 /**
@@ -59,8 +65,8 @@ router.get('/name-gender-dob', (req, res, next) => {
  * Return a fake address
  */
 router.get('/address', async (req, res) => {
-	const address = await getRandomAddress();
-	res.send(address);
+  const address = await getRandomAddress();
+  res.send(address);
 });
 
 /**
@@ -68,8 +74,8 @@ router.get('/address', async (req, res) => {
  * Return a fake mobile phone number
  */
 router.get('/mobile', (req, res, next) => {
-	const { phoneNumber } = getRandomPhoneNumber();
-	res.send({ phoneNumber });
+  const { phoneNumber } = getRandomPhoneNumber();
+  res.send({ phoneNumber });
 });
 
 /**
@@ -78,12 +84,14 @@ router.get('/mobile', (req, res, next) => {
  * (CPR, full name, gender, date of birth, address, mobile phone number)
  */
 router.get('/all', async (req, res, next) => {
-	const { name, surname, gender } = generateNamesAndGender();
-	const { cpr } = generateCPR(gender);
-	const { dob } = getDateOfBirth(cpr);
-	const { phoneNumber } = getRandomPhoneNumber();
-	const address = await getRandomAddress();
-	res.send({ cpr, name, surname, gender, dob, address, phoneNumber });
+  const { name, surname, gender } = generateNamesAndGender();
+  const { cpr } = generateCPR(gender);
+  const { dob } = getDateOfBirth(cpr);
+  const { phoneNumber } = getRandomPhoneNumber();
+  const address = await getRandomAddress();
+  res.send({
+    cpr, name, surname, gender, dob, address, phoneNumber,
+  });
 });
 
 /**
@@ -92,21 +100,23 @@ router.get('/all', async (req, res, next) => {
  * Return fake person information in bulk (all information for 2 to 100 persons)
  */
 router.get('/all/bulk', async (req, res, next) => {
-	let amount = Number(req.query.amount) || 2; // 2 fake persons if not specified
-	if (amount < 2) amount = 2; // covers the negative numbers
-	if (amount > 100) amount = 100; // covers numbers larger than 100
-	
-	amount = amount | 0; // covers double type ( "| 0" converts a double into integer)
-	let list = new Array(amount | 0).fill(null); 
-	const bulkData = await Promise.all(list.map(async () => {
-		const { name, surname, gender } = generateNamesAndGender();
-		const { cpr } = generateCPR(gender);
-		const { dob } = getDateOfBirth(cpr);
-		const { phoneNumber } = getRandomPhoneNumber();
-		const address = await getRandomAddress();
-		return { name, surname, gender, cpr, dob, phoneNumber, address };
-	}));
-	res.send({ length: bulkData.length, result: bulkData });
+  let amount = Number(req.query.amount) || 2; // 2 fake persons if not specified
+  if (amount < 2) amount = 2; // covers the negative numbers
+  if (amount > 100) amount = 100; // covers numbers larger than 100
+
+  amount |= 0; // covers double type ( "| 0" converts a double into integer)
+  const list = new Array(amount | 0).fill(null);
+  const bulkData = await Promise.all(list.map(async () => {
+    const { name, surname, gender } = generateNamesAndGender();
+    const { cpr } = generateCPR(gender);
+    const { dob } = getDateOfBirth(cpr);
+    const { phoneNumber } = getRandomPhoneNumber();
+    const address = await getRandomAddress();
+    return {
+      name, surname, gender, cpr, dob, phoneNumber, address,
+    };
+  }));
+  res.send({ length: bulkData.length, result: bulkData });
 });
 
 module.exports = router;
