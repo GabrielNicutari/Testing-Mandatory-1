@@ -92,8 +92,12 @@ router.get('/all', async (req, res, next) => {
  * Return fake person information in bulk (all information for 2 to 100 persons)
  */
 router.get('/all/bulk', async (req, res, next) => {
-	const amount = Number(req.query.amount) || 2;
-	let list = new Array(amount).fill(null);
+	let amount = Number(req.query.amount) || 2; // 2 fake persons if not specified
+	if (amount < 2) amount = 2; // covers the negative numbers
+	if (amount > 100) amount = 100; // covers numbers larger than 100
+	
+	amount = amount | 0; // covers double type ( "| 0" converts a double into integer)
+	let list = new Array(amount | 0).fill(null); 
 	const bulkData = await Promise.all(list.map(async () => {
 		const { name, surname, gender } = generateNamesAndGender();
 		const { cpr } = generateCPR(gender);
