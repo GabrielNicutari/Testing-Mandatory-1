@@ -7,7 +7,7 @@ const app = express();
 app.use(express.static(`${__dirname}`));
 
 // setup global routing
-app.use('/api', require('./src/routes/router.js'));
+app.use('/api', require('./src/routes/router'));
 
 const PORT = process.env.PORT || 8080;
 /* eslint-disable no-debugger, no-console */
