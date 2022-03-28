@@ -9,5 +9,5 @@ function generateNamesAndGender() {
 }
 
 module.exports = {
-  generateNamesAndGender
+  generateNamesAndGender,
 };

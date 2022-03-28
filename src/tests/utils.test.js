@@ -27,7 +27,7 @@ describe('address random number', () => {
   testsDefinedValues.forEach(({ args, expected }) => {
     // run each test 10 times to try to catch an error
     for (let i = 0; i < 10; i++) {
-      it(`get random number from default to ${args[0]} exclusive, try number: ${i}`, () => {
+      test(`get random number from default to ${args[0]} exclusive, try number: ${i}`, () => {
         expect(getRandomNumber(args[0], args[1])).toEqual(expected);
       });
     }
@@ -41,7 +41,7 @@ describe('address random number', () => {
   testsUndefinedMin.forEach(({ args, expected }) => {
     // run each test 10 times to try to catch an error
     for (let i = 0; i < 10; i++) {
-      it(`get random number from default to ${args} exclusive, try number: ${i}`, () => {
+      test(`get random number from default to ${args} exclusive, try number: ${i}`, () => {
         expect(getRandomNumber(args)).toBeGreaterThanOrEqual(expected[0]);
         expect(getRandomNumber(args)).toBeLessThan(expected[1]);
       });
@@ -50,7 +50,7 @@ describe('address random number', () => {
 
   // run each test 10 times to try to catch an error
   for (let i = 0; i < 10; i++) {
-    it(`get random number from default to default exclusive, try number: ${i}`, () => {
+    test(`get random number from default to default exclusive, try number: ${i}`, () => {
       expect(getRandomNumber()).toEqual(0);
     });
   }
@@ -62,7 +62,7 @@ describe('address random number', () => {
   ];
 
   testsNotNumber.forEach(({ args }) => {
-    it('throw an exception because passed parameter is not a number', () => {
+    test('throw an exception because passed parameter is not a number', () => {
       expect(() => { getRandomNumber(args); }).toThrow('Passed parameter is not a number.');
       expect(() => { getRandomNumber(0, args); }).toThrow('Passed parameter is not a number.');
     });
