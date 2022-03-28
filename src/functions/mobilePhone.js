@@ -1,3 +1,5 @@
+const {getRandomNumber} = require('./utils.js')
+
 const digitCombination = ['2', '30', '31', '40', '41', '42', '50', '51', '52', '53',
   '60', '61', '71', '81', '91', '92', '93', '342', '344-349', '356-357', '359', '362', '365-366', '389', '398', '431', '441', '462',
   '466', '468', '472', '474', '476', '478', '485-486', '488-489', '493-496', '498-499', '542-543', '545', '551-552',
@@ -20,10 +22,6 @@ function digitsToArray() {
   }).flat();
 }
 
-function getRandomNumber(max) {
-  return Math.floor(Math.random() * max);
-}
-
 function getRandomPhoneNumber() {
   const digitsArray = digitsToArray();
   let phoneNumber = String(digitsArray[getRandomNumber(digitsToArray().length)]);
@@ -34,5 +32,5 @@ function getRandomPhoneNumber() {
   return { "phoneNumber": phoneNumber };
 }
 module.exports = {
-  digitsToArray, getRandomPhoneNumber, getRandomNumber,
+  digitsToArray, getRandomPhoneNumber,
 };
