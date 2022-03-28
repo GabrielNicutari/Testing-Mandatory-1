@@ -1,5 +1,6 @@
 const express = require('express');
 const request = require('supertest'); //test web apis
+const { pool } = require('../database/connection.js');
 
 const app = express(); //fake express app
 app.use('/api', require('../routes/router.js'));
@@ -72,4 +73,6 @@ describe("server-routes", () => {
       expect(condition).toEqual(true);  
     }
   });
+
+  afterAll( () => {  pool.end();})
 });
