@@ -74,5 +74,4 @@ describe('address random number', () => {
     expect(getRandomNumber(maxNumber)).toBeGreaterThanOrEqual(0);
     expect(getRandomNumber(maxNumber)).toBeLessThanOrEqual(maxNumber - 1);
   });
-
 });

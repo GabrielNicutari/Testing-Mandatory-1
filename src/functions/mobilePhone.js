@@ -1,4 +1,4 @@
-const {getRandomNumber} = require('./utils.js')
+const { getRandomNumber } = require('./utils.js');
 
 const digitCombination = ['2', '30', '31', '40', '41', '42', '50', '51', '52', '53',
   '60', '61', '71', '81', '91', '92', '93', '342', '344-349', '356-357', '359', '362', '365-366', '389', '398', '431', '441', '462',

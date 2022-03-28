@@ -1,7 +1,6 @@
-const { digitsToArray, getRandomPhoneNumber} = require('../functions/mobilePhone');
+const { digitsToArray, getRandomPhoneNumber } = require('../functions/mobilePhone');
 
 describe('mobile phone', () => {
-
   test('check getRandomPhoneNumber() if number starts from digit from list of possible digits for the danish number', () => {
     const phoneNumber = getRandomPhoneNumber();
     const digitsArray = digitsToArray();

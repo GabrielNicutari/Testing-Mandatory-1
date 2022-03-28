@@ -1,5 +1,5 @@
 const promisePool = require('../database/connection').pool.promise();
-const {getRandomNumber} = require('./utils.js')
+const { getRandomNumber } = require('./utils.js');
 
 async function getRandomPostalCodeAndTown() {
   const mysqlQuery = 'SELECT * FROM postal_code ORDER BY RAND() LIMIT 1';
