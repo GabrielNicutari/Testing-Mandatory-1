@@ -7,18 +7,18 @@ const generatetDateOfBirth = (date) => {
   return dob;
 };
 
-const randomIntFromInterval = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+const randomIntFromInterval = () => Math.floor(Math.random() * 9);
 
-const randomOddIntFromInterval = (min, max) => {
-  // eslint-disable-next-line
-  if (min % 2 === 0) ++min;
-  return min + 2 * randomIntFromInterval(0, (max - min) / 2);
-};
+const lastCprDigit = (gender) => {
+  const last = randomIntFromInterval();
 
-const randomEvenIntFromInterval = (min, max) => {
-  // eslint-disable-next-line
-  if (min % 2 !== 0) ++min;
-  return min + 2 * randomIntFromInterval(0, (max - min) / 2);
+  if (gender === 'female' && last % 2 !== 0) {
+    return lastCprDigit(gender);
+  }
+  if (gender === 'male' && last % 2 === 0) {
+    return lastCprDigit(gender);
+  }
+  return last;
 };
 
 const generateRandomDate = () => {
@@ -29,13 +29,8 @@ const generateRandomDate = () => {
 
 const generateLastFour = (gender) => {
   const firstThree = (`${Math.random()}`).substring(2, 5);
-  let last = randomIntFromInterval(0, 9);
-  if (gender === 'female' && last % 2 !== 0) {
-    last = randomEvenIntFromInterval(0, 9);
-  } else if (gender === 'male' && last % 2 === 0) {
-    last = randomOddIntFromInterval(0, 9);
-  }
-  return String(firstThree + last);
+  const last = lastCprDigit(gender);
+  return firstThree.concat(last);
 };
 
 module.exports.generateCPR = (gender) => {
