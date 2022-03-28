@@ -41,7 +41,6 @@ jest.mock('../database/person-names.json', () => ({
 })); // mock data to avoid reading file - improve performance
 
 describe('server-routes', () => {
-  beforeAll(() => { jest.setTimeout(30000) });
 
   test('GET /api/cpr-name-gender - success', async () => {
     const { body } = await request(app).get('/api/cpr-name-gender'); // use the request function that we can use the app// save the response
@@ -65,6 +64,7 @@ describe('server-routes', () => {
   });
 
   test('GET /api/all/bulk - success', async () => {
+    jest.setTimeout(30000);
     const testAmount = [-1, 1, 2, 3, 50, 99, 100, 101, 1000000, '', 'test', 5.5]; // cover edge cases and different types
 
     await Promise.all(testAmount.map(async (value) => {
@@ -72,8 +72,8 @@ describe('server-routes', () => {
       const condition = body.length >= 2 && body.length <= 100;
       expect(condition).toEqual(true);
     }));
+
+    jest.setTimeout(5000);
   });
-  afterAll(() => {
-    jest.setTimeout(5000); 
-    pool.end(); });
+  afterAll(() => { pool.end(); });
 });
