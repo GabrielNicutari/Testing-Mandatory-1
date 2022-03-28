@@ -79,12 +79,12 @@ async function getRandomAddress() {
   const postalCodeAndTown = await getRandomPostalCodeAndTown();
   return {
     street: getStreet(),
-		streetFloor: getStreetNumber(),
-		floor: getFloor(),
-		door: getRandomDoor(),
-		postalCode: postalCodeAndTown[0].cPostalCode,
-		town: postalCodeAndTown[0].cTownName,
-  }
+    streetFloor: getStreetNumber(),
+    floor: getFloor(),
+    door: getRandomDoor(),
+    postalCode: postalCodeAndTown[0].cPostalCode,
+    town: postalCodeAndTown[0].cTownName,
+  };
 }
 
 module.exports = { getRandomNumber, getRandomAddress };

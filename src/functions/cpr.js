@@ -45,6 +45,4 @@ module.exports.generateCPR = (gender) => {
   return { cpr: String(dob + lastFour) };
 };
 
-module.exports.getDateOfBirth = (cpr) => { 
-  return { dob: cpr.substring(0, 6) } 
-};
+module.exports.getDateOfBirth = (cpr) => ({ dob: cpr.substring(0, 6) });
