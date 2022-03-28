@@ -41,6 +41,7 @@ jest.mock('../database/person-names.json', () => ({
 })); // mock data to avoid reading file - improve performance
 
 describe('server-routes', () => {
+
   test('GET /api/cpr-name-gender - success', async () => {
     const { body } = await request(app).get('/api/cpr-name-gender'); // use the request function that we can use the app// save the response
     expect(Object.keys(body).sort()).toEqual(['cpr', 'gender', 'name', 'surname']); // test all necessary keys
@@ -70,6 +71,6 @@ describe('server-routes', () => {
       const condition = body.length >= 2 && body.length <= 100;
       expect(condition).toEqual(true);
     }));
-  });
+  }, 30000);
   afterAll(() => { pool.end(); });
 });
